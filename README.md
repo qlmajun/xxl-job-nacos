@@ -8,7 +8,7 @@
 
 ### 设计架构
 
-![image](./images/xxl-job-nacos.png)
+![image](./xxl-job/doc/images/xxl-job-nacos.png)
 
 ### xxl-job-nacos服务构建步骤
 
@@ -72,7 +72,7 @@
   ```
   
 * 新增内容
-![image](./images/xxl-job-core.png)
+![image](./xxl-job/doc/images/xxl-job-core.png)
 
 
 
@@ -186,9 +186,9 @@
   ```
 
 * 登入xxl-job控制台配置执行器
-![image](./images/xxl-job-executor.png)
+![image](./xxl-job/doc/images/xxl-job-executor.png)
 
 * xxl-job控制台上配置任务
-![image](./images/xxl-job-job.png)
+![image](./xxl-job/doc/images/xxl-job-job.png)
   
 
