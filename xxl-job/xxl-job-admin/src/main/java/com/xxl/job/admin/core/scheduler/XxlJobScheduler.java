@@ -25,7 +25,8 @@ public class XxlJobScheduler  {
         initI18n();
 
         // admin registry monitor run
-        JobRegistryMonitorHelper.getInstance().start();
+        //TODO 通过nacos监听注册，不需要注册线程监听 重构 by majun at 2020-05-22
+        //JobRegistryMonitorHelper.getInstance().start();
 
         // admin fail-monitor run
         JobFailMonitorHelper.getInstance().start();

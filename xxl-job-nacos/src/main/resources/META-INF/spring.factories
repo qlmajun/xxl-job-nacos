@@ -1,0 +1,5 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.warrior.xxl.job.config.ApplicationContextHolder,\
+com.warrior.xxl.job.config.JobScheduleConfig,\
+com.warrior.xxl.job.config.NamingServiceConfiguration

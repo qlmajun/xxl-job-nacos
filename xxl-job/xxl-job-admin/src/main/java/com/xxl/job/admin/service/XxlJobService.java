@@ -1,7 +1,6 @@
 package com.xxl.job.admin.service;
 
 
-import com.xxl.job.admin.core.model.XxlJobGroup;
 import com.xxl.job.admin.core.model.XxlJobInfo;
 import com.xxl.job.core.biz.model.ReturnT;
 
@@ -83,14 +82,5 @@ public interface XxlJobService {
 	 * @return
 	 */
 	public ReturnT<Map<String,Object>> chartInfo(Date startDate, Date endDate);
-
-    /**
-     * 获取注册中心中服务实例
-     * 保存于数据库中
-     * @param xxlJobGroup job组
-     * @param group registGroup 分组 如 EXECUTOR
-     * @return SUCCESS | FAIL
-     */
-    ReturnT<String> registryByDiscovery(XxlJobGroup xxlJobGroup, String group);
 
 }

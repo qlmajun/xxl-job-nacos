@@ -13,13 +13,9 @@ import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.enums.ExecutorBlockStrategyEnum;
 import com.xxl.job.core.glue.GlueTypeEnum;
 import com.xxl.job.core.util.DateUtil;
-import com.xxl.job.core.util.DiscoveryUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.text.MessageFormat;
@@ -44,8 +40,6 @@ public class XxlJobServiceImpl implements XxlJobService {
 	private XxlJobLogGlueDao xxlJobLogGlueDao;
 	@Resource
 	private XxlJobLogReportDao xxlJobLogReportDao;
-    @Resource
-    private XxlJobRegistryDao xxlJobRegistryDao;
 	
 	@Override
 	public Map<String, Object> pageList(int start, int length, int jobGroup, int triggerStatus, String jobDesc, String executorHandler, String author) {
@@ -374,34 +368,5 @@ public class XxlJobServiceImpl implements XxlJobService {
 
 		return new ReturnT<Map<String, Object>>(result);
 	}
-
-    @Override
-    @Transactional
-    public ReturnT<String> registryByDiscovery(XxlJobGroup xxlJobGroup, String group) {
-//		List<InstanceInfo> serviceInstances = DiscoveryUtil.getServicesByDiscovery(xxlJobGroup.getAppName());
-
-        List<ServiceInstance> servicesByDiscovery = DiscoveryUtil.getServicesByDiscovery(xxlJobGroup.getAppname());
-
-        StringBuilder stringBuilder = new StringBuilder();
-        if (!CollectionUtils.isEmpty(servicesByDiscovery)) {
-            servicesByDiscovery.forEach(val -> {
-                String registryValue = val.getServiceId();
-                int ret = xxlJobRegistryDao.registryUpdate(group, xxlJobGroup.getAppname(), registryValue,new Date());
-                if (ret < 1) {
-                    xxlJobRegistryDao.registrySave(group, xxlJobGroup.getAppname(), registryValue,new Date());
-                }
-                stringBuilder.append(registryValue).append(",");
-            });
-        }
-
-        String addressList = stringBuilder.toString();
-        if (addressList.endsWith(",")) {
-            addressList = addressList.substring(0, addressList.length() - 1);
-        }
-
-        xxlJobGroup.setAddressList(addressList);
-        xxlJobGroupDao.update(xxlJobGroup);
-        return ReturnT.SUCCESS;
-    }
 
 }

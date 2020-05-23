@@ -1,4 +1,0 @@
-# Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.xxl.job.core.config.JobConfiguration,\
-com.xxl.job.core.config.ApplicationContextHolder

@@ -1,9 +1,8 @@
 package com.xxl.job.admin.core.route.strategy;
 
-import com.xxl.job.admin.core.scheduler.XxlJobScheduler;
+import com.warrior.xxl.job.util.RestTemplateClient;
 import com.xxl.job.admin.core.route.ExecutorRouter;
 import com.xxl.job.admin.core.util.I18nUtil;
-import com.xxl.job.core.biz.ExecutorBiz;
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.biz.model.TriggerParam;
 
@@ -22,8 +21,10 @@ public class ExecutorRouteFailover extends ExecutorRouter {
             // beat
             ReturnT<String> beatResult = null;
             try {
-                ExecutorBiz executorBiz = XxlJobScheduler.getExecutorBiz(address);
-                beatResult = executorBiz.beat();
+//                ExecutorBiz executorBiz = XxlJobScheduler.getExecutorBiz(address);
+//                beatResult = executorBiz.beat();
+                //TODO 重构执行器心跳naocs调用检测
+                RestTemplateClient.executorBeat(address);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
                 beatResult = new ReturnT<String>(ReturnT.FAIL_CODE, ""+e );

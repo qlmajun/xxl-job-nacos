@@ -226,4 +226,14 @@
 		WHERE id = #{id}
 	</update>
 
+    <delete id="deleteByExecutorHandlers">
+        DELETE
+		FROM xxl_job_info
+		WHERE job_group = #{jobGroup}
+		AND executor_handler IN
+        <foreach collection="executorHandlers"  item="item" open="(" separator="," close=")"  >
+            #{item}
+        </foreach>
+    </delete>
+
 </mapper>

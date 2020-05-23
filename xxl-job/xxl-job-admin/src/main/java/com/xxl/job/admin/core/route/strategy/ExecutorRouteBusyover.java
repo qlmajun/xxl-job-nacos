@@ -1,9 +1,8 @@
 package com.xxl.job.admin.core.route.strategy;
 
-import com.xxl.job.admin.core.scheduler.XxlJobScheduler;
+import com.warrior.xxl.job.util.RestTemplateClient;
 import com.xxl.job.admin.core.route.ExecutorRouter;
 import com.xxl.job.admin.core.util.I18nUtil;
-import com.xxl.job.core.biz.ExecutorBiz;
 import com.xxl.job.core.biz.model.IdleBeatParam;
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.biz.model.TriggerParam;
@@ -22,8 +21,11 @@ public class ExecutorRouteBusyover extends ExecutorRouter {
             // beat
             ReturnT<String> idleBeatResult = null;
             try {
-                ExecutorBiz executorBiz = XxlJobScheduler.getExecutorBiz(address);
-                idleBeatResult = executorBiz.idleBeat(new IdleBeatParam(triggerParam.getJobId()));
+//                ExecutorBiz executorBiz = XxlJobScheduler.getExecutorBiz(address);
+//                idleBeatResult = executorBiz.idleBeat(new IdleBeatParam(triggerParam.getJobId()));
+                //TODO 重构空闲心跳nacos注册服务接口调用 by majun at 2020-05-15
+                IdleBeatParam idleBeatParam = new IdleBeatParam(triggerParam.getJobId());
+                idleBeatResult = RestTemplateClient.executorIdleBeat(address, idleBeatParam);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
                 idleBeatResult = new ReturnT<String>(ReturnT.FAIL_CODE, ""+e );
