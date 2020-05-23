@@ -18,17 +18,17 @@
 
 ##### 架构图
 
-![image](./images/xxl-job-nacos-architecture.jpg)
+![image](./doc/images/xxl-job-nacos-architecture.jpg)
 
 
 
 ##### nacos服务注册及服务调用流程
 
-![image](./images/xxl-job-nacos.png)
+![image](./doc/images/xxl-job-nacos.png)
 
 ##### 统一任务平台多数据中心服务路由
 
-![image](./images/xxl-job-datacenter-route.jpg)
+![image](./doc/images/xxl-job-datacenter-route.jpg)
 
 ​         运营门户操作统一任务管理平台，通过选定资源池对应的数据中心发起定时任务的远程调度，实现定时任务多数据中心统一操作控制，运营门户根据登入用户获取资源池的请求地址发送http调用。
 
@@ -378,7 +378,7 @@
 * 当监听服务有实例上线后，如果监听的服务名未注册执行器，则新增执行器注册，否则更新执行器的地址列表信息。
 * 当监听服务实例都下线完成后，修改监听服务名的执行器的地址列表为空。
 
-![image](./images/nacos-discovery.png)
+![image](./doc/images/nacos-discovery.png)
 
  **流程图**
 
@@ -395,7 +395,7 @@
 
 
 
-![image](./images/job-fail-monitor.png)
+![image](./doc/images/job-fail-monitor.png)
 
 **流程图**
 
@@ -407,7 +407,7 @@
 
 * 调度记录停留在 "运行中" 状态超过10min，且对应执行器心跳注册失败不在线，则将本地调度主动标记失败。
 
-![image](./images/job-losed-monitor.png)
+![image](./doc/images/job-losed-monitor.png)
 
 ##### 任务调度执行日志报表
 
@@ -416,7 +416,7 @@
 * 从`xxl_job_log`中统计当前日期起三天前的调度执行日志处理统计信息，更新到xxl_job_log_report中。
 * 调度中心配置`saas.job.logretentiondays` 日志保存天数，一天清除一次过期日志。
 
-![image](./images/job-log-report.png)
+![image](./doc/images/job-log-report.png)
 
 **流程图**
 
@@ -435,17 +435,17 @@
 
 **任务触发调度总体流程**
 
-![image](./images/job-scheduler.jpg)
+![image](./doc/images/job-scheduler.jpg)
 
 **JobScheduleHelper cron定时触发流程图**
 
-![image](./images/job-schedule-cron.png)
+![image](./doc/images/job-schedule-cron.png)
 
 #### 执行模块
 
 ##### 执行中心服务流程
 
-![image](./images/xxl-job-executor.png)
+![image](./doc/images/xxl-job-executor.png)
 
 ##### 执行器启动注解任务注册
 
